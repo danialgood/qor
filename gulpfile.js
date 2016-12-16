@@ -258,3 +258,26 @@ gulp.task('compressCSSVendor', function() {
         .pipe(plugins.concat('vendors.css'))
         .pipe(gulp.dest('../admin/views/assets/stylesheets'));
 });
+
+
+gulp.task('combineDatetimePicker', function() {
+    return gulp.src([
+            '../admin/views/assets/javascripts/qor/qor-modal.js',
+            '../admin/views/assets/javascripts/qor/datepicker.js',
+            '../admin/views/assets/javascripts/qor/qor-datepicker.js',
+            '../admin/views/assets/javascripts/qor/qor-timepicker.js'
+        ])
+        .pipe(plugins.concat('datetimepicker.js'))
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest('../admin/views/assets/javascripts'));
+});
+
+gulp.task('combineDatetimePickerCSS', function() {
+    return gulp.src([
+            '../admin/views/assets/stylesheets/scss/datetimepicker.scss'
+        ])
+        .pipe(plugins.sass({ outputStyle: 'compressed' }))
+        .pipe(plugins.minifyCss())
+        .pipe(rename('datetimepicker.css'))
+        .pipe(gulp.dest('../admin/views/assets/stylesheets'));
+});
